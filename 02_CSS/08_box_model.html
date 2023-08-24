@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <style>
+        /* 블록 요소는 width, height를 지정할 수 있다. 
+           인라인 요소는 X */
+        .wrap1 > div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid gray;
+            background-color: lightgray;
+        }
+        .wrap1 > span {
+            width: 100px;
+            height: 100px;
+            border: 1px solid gray;
+            background-color: lightgray;
+        }
+    </style>
+
+    <div class="wrap1">
+        <div>블록 요소</div>
+        <span>인라인 요소</span>
+    </div>
+
+    <hr>
+
+    <style>
+        .wrap2 {
+            width: 200px;
+            height: 200px;
+            border: 1px solid red;
+        }
+        /* 자식 : 부모 기준 퍼센트 값을 가진다. */
+        .wrap2 > .box1 {
+            width: 100%;
+            height: 50%;
+            border: 1px solid gray;
+        }
+        /* 자식 : 부모보다 크면 튀어나온다. */
+        .wrap2 > .box2 {
+            width: 300px;
+            height: 100px;
+            border: 1px solid crimson;
+        }
+    </style>
+    <div class="wrap2">
+        <div class="box1">box1</div>
+        <div class="box2">box2</div>
+    </div>
+
+    <hr>
+
+    <style>
+        .wrap3 > div{
+            width: 100px;
+            height: 100px;
+        }
+        /* 모든 테두리 지정하기 */
+        .wrap3 > .box1 {
+            border: 1px solid gray; /* border-width border-width border-color */
+        }
+        /* 원하는 테두리 지정하기 */
+        .wrap3 > .box2 {
+            border-top: 1px solid crimson;
+            border-right: 1px solid crimson;
+            border-bottom: 1px solid crimson;
+            border-left: 1px solid crimson;
+        }
+        /* 모서리 둥글게 */
+        .wrap3 > .box3 {
+            border: 1px solid gray;
+            border-radius: 5px;
+            border-radius: 5px 10px 5px 10px;
+        }
+    </style>
+    <div class="wrap3">
+        <div class="box1">box1</div>
+        <div class="box2">box2</div>
+        <div class="box3">box3</div>
+    </div>
+
+    <hr>
+
+    <style>
+        .wrap4 > div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid gray;
+        }
+        /* 내부여백(테두리와 컨텐츠 사이 여백) */
+        /* 모든 여백 지정
+            순서: 상 우 하 좌 */
+        .wrap4 > .box1 {
+            padding: 10px;
+        }
+        /* 원하는 여백 지정 */
+        .wrap4 > .box2 {
+            padding-top: 10px;
+            padding-right: 20px;
+            padding-bottom: 10px;
+            padding-left: 20px;
+        }
+    </style>
+    <div class="wrap4">
+        <div class="box1">box1</div>
+        <div class="box2">box2</div>
+    </div>
+
+    <hr>
+
+    <style>
+        /* box-sizing 
+
+            1. content-box
+                1) 디폴트 값
+                2) width, height는 내용의 크기를 의미
+                3) box 크기: width/height + border + padding
+
+            2. border-box
+                1) width, height는 테두리까지의 크기를 의미
+                2) box 크기: width, height
+        */
+        .wrap5 > div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid gray;
+        }
+        /* box1 크기: 122px */
+        .wrap5 > .box1 {
+            box-sizing: content-box;
+            width: 100px;
+            height: 100px;
+            border: 1px solid gray;
+            padding: 10px;
+        }
+        /* box2 크기: 100px */
+        .wrap5 > .box2 {
+            box-sizing: border-box;
+            width: 100px;
+            height: 100px;
+            border: 1px solid gRAY;
+            padding: 10px;
+        }
+
+    </style>
+    <div class="wrap5">
+        <div class="box1">box1</div>
+        <div class="box2">box2</div>
+        <div class="box3">box3</div>
+    </div>
+
+    <hr>    
+
+    <style>
+        .wrap6 {
+            width: 500px;
+            border: 1px solid red;
+        }  
+        .wrap6 > div {
+            box-sizing: border-box;
+            width: 100px;
+            height: 100px;
+            border: 1px solid gray;
+        }
+        .wrap6 > .box1 {
+            margin: 10px;
+        }
+        .wrap6 > .box2 {
+            margin-top: 10px;
+            margin-right: 20px; 
+            margin-bottom: 10px;
+            margin-left: 20px;
+        }
+        .wrap6 > .box3 {
+            margin: 0 auto;
+        }
+
+    </style>
+    <div class="wrap6">
+        <div class="box1">box1</div>
+        <div class="box2">box2</div>
+        <div class="box3">box3</div>
+    </div>
+    
+</body>
+</html>
