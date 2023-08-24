@@ -12,8 +12,7 @@
             box-sizing: border-box;
             width: 192px;
             height: 128px;
-            background-image: url(../../assets/image/animal10.jpg);
-            background-size: 192px 128px;
+            background: url(../../assets/image/animal10.jpg) center/192px 128px;
         }
     </style>
     <div class="box1"></div>
@@ -26,11 +25,7 @@
             width: 500px;
             height: 380px;
             border: 1px solid gray;
-            background-image: url(../../assets/image/attach1.png);  
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-
+            background: url(../../assets/image/attach1.png) no-repeat right/auto;
         }
     </style>
     <div class="box2"></div>
@@ -43,10 +38,7 @@
             width: 300px;
             height: 300px;
             border: 1px solid gray;
-            background-image: url(../../assets/image/animal10.jpg);
-            background-repeat: no-repeat;
-            background-size: cover   ;
-            background-position: center;
+            background: url(../../assets/image/animal10.jpg) no-repeat center/cover;
         }
     </style>
     <div class="box3"></div>
@@ -59,9 +51,7 @@
             width: 115px;
             height: 115px;
             border: 1px solid gray;
-            background-image: url(../../assets/image/weather.png);
-            background-repeat: no-repeat;
-            background-position: -145px 0;
+            background: url(../../assets/image/weather.png) no-repeat -145px 0
         }
     </style>
     <div class="box4"></div>
@@ -73,12 +63,30 @@
             box-sizing: border-box;
             width: 94px;
             height: 126px;
-            background-image: url(../../assets/image/logo.png);
-            background-repeat: no-repeat;
-            background-position: -1184px -180px;
-        }
+            background: url(../../assets/image/logo.png) no-repeat -1184px -180px/auto;
+        } 
     </style>
     <div class="box5"></div>
+
+    <hr>
+
+    <style>
+        .box6 {
+            box-sizing: border-box;
+            width: 640px;
+            height: 480px;
+            background: url(../../assets/image/architecture2.jpg) center/640px 480px gray;
+            background-blend-mode: multiply;
+            
+            font-size: 80px;
+            font-weight: 900;
+            color: white;
+            text-align: center;
+            line-height: 480px; /* 세로 가운데 정렬 (한줄만) */
+        }
+    </style>
+    <div class="box6">에펠탑입니다.</div>
+
 
 </body>
 </html>
