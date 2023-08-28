@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /*
+      주석
+    */
+    // 주석
+    /*
+      JavaScript
+      1. ECMAScript(ES) 원래 명칭임
+      2. <script> 안에 작성 아무데나 가능
+      3. HTML 구성요소 생서 수정 삭제
+
+      변수
+      1. 기본 자료형: number, string, boolean, null, undefined
+      2. 특징: Dynamic Type
+      3. 변수 선언: var: function level / let const: block level
+                        변수선언 생략                변수선언 생략 / 생략X
+                        초기화   생략                초기화   생략X
+                        재선언   가능                재선언   불가능
+                        함수 전역변수용               지역변수용 / 상수용
+      
+      출력
+      1. 경고창: alert(message)
+      2. 화면  : document.write(message)
+      3. 콘솔 :  console.log(message)
+
+      alert('갓민지');
+      document.write('<h1>갓하니</h1>'); 
+      console.log('갓해린');
+
+      Hoisting
+      1. JavaScript Interpreter가 함수나 변수의 선언 이전에 미리 메모리 공간을 할당하는 것
+      2. var 변수는 호이스팅 시 undefined 값을 가짐
+      3. let 변수는 호이스팅 시 초기화되지 않음
+      4. 정의/선언보다 호출/사용을 먼저 할 수 있음
+
+      type casting
+      1. number -> string: String(number), number + ''
+      2. string -> number: Numbwe(string), parseInt(string), parse(string0)
+    */
+
+    var a; // undefined
+    console.log(a, a + 1);
+
+    var a = 3; // 재선언
+    console.log(typeof a, a / 0);
+    
+    a = '민지' // 값이 바뀌면 타입도 바뀜
+    console.log(typeof a, a);
+
+    b = true; // 선언 생략
+    console.log(typeof b, b);
+    var b; // 변수 선언은 항상 먼저 처리됨.(호이스팅)
+
+    console.log(y);
+    var y = 10;
+    console.log(y);
+
+    //console.log(z);
+    //let z = 30;
+    //console.log(z);
+    
+    var a = 100;
+    var str = String(a);
+    console.log(typeof str, str);
+    var str = a + ' '
+    console.log(typeof str, str);
+
+    var str = '200';
+    var a = Number(str);
+    console.log(typeof a, a);
+    var a = parseInt(str);
+    console.log(typeof a, a); 
+  </script>
+</body>
+</html>

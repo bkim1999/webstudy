@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <div class="wrap">
+    <div id="box1" class="primary_box">box1</div>
+    <div id="box2" class="primary_box">box2</div>
+    <div id="box3" class="primary_box">box3</div>
+  </div>
+
+  <script>
+   /*
+     DOM
+     1. Document Object Model
+     2. HTML 구성 요소 (HTMLCollection, Node) -> 객체
+     3. var 변수 = document.getElementById('id')
+        var 배열 = document.getElementsByClassName('class')
+        var 배열 = document.getElementsByTagName('tag')
+        var 변수 = document.querySelector('selector')
+        var 배열 = document.querySelectorAll('selector')
+     4. 반드시 HTMLCollection를 먼저 만든다.
+   */
+
+    var box1 = document.getElementById('box1');
+    console.log(box1);
+    var box2 = document.getElementById('box2');
+    console.log(box2);
+    var box3 = document.getElementById('box3');
+    console.log(box3);
+
+    var primary_box = document.getElementsByClassName('primary_box');
+    console.log(primary_box);
+
+    var div = document.getElementsByTagName('div');
+    console.log(div);
+
+    var box1 = document.querySelector('#box1');
+    console.log(box1);
+    var primary_box = document.querySelectorAll('.primary_box');
+    console.log(primary_box);
+
+  </script>
+
+  <!-- 태그 내부 텍스트/요소 -->
+  <p id="p1">김민지</p>
+  <p id="p2"><strong>강해린</strong></p>
+
+  <script>
+    var p1 = document.getElementById('p1');
+    console.log(p1.textContent);
+    p1.textContent = '팜하니';
+    p1.textContent += '는 신이다'
+
+    var p2 = document.getElementById('p2');
+    console.log(p2.innerHTML);
+    p2.innerHTML = '<em>강해린</em>'
+    p2.innerHTML += '<mark>은 신이다</mark>'
+  </script>
+
+  <!-- 연습1. 봄여름가을겨울-->
+  <ul id="season">
+  </ul>
+
+  <script>
+    var season = document.getElementById('season');
+    season.innerHTML = '<li>김민지</li>'
+                 + '<li>팜하니</li>'
+                 + '<li>다니엘</li>'
+                 + '<li>강해린</li>';
+  </script>
+
+  <!-- 태그 속성 -->
+  <p id="p3">
+    <img src="../../assets/image/flower1.jpg" width="384px">
+  </p>
+
+  <script>
+    var img = document.querySelector('#p3 > img');
+    img.setAttribute('src', '../../assets/image/flower2.jpg');
+    img.setAttribute('width', '500px');
+  </script>
+
+  <!-- 연습2. 이미지 + 링크-->
+  <ul id="site">
+  </ul>
+
+  <script>
+    var site = document.getElementById('site');
+    site.innerHTML += '<li><a><img></a></li>';
+    site.innerHTML += '<li><a><img></a></li>';
+    site.innerHTML += '<li><a><img></a></li>';
+    document.querySelector('#site a').setAttribute('href', 'http://www.google.com');
+    document.querySelector('#site img').setAttribute('src', '../../assets/image/google.png')
+    document.querySelector('#site img').setAttribute('width', '300px');
+    document.querySelector('#site > li:nth-of-type(2) > a').setAttribute('href', 'http://www.naver.com')
+    document.querySelector('#site > li:nth-of-type(2) img').setAttribute('src', '../../assets/image/naver.png');
+    document.querySelector('#site > li:nth-of-type(2) img').setAttribute('width', '300px');
+    document.querySelector('#site > li:nth-of-type(3) > a').setAttribute('href', 'http://www.daum.net');
+    document.querySelector('#site > li:nth-of-type(3) img').setAttribute('src', '../../assets/image/daum.png');
+    document.querySelector('#site > li:nth-of-type(3) img').setAttribute('width', '300px');
+  </script>
+
+  <!-- 객체 속성 -->
+  <!-- property, JS로 저장된 문서 개체가 가지는 속성, attribute랑 다름.-->
+  <p id="p4">
+    <input type="radio" name="gender" value="M" id="male" checked="checked" class="blind">
+    <label for="male">남자</label>
+    <input type="radio" name="gender" value="F" id="female" class="blind">
+    <label for="female">여자</label>
+  </p>
+
+  <script>
+    var male = document.getElementById('male');
+    console.log('type',    male.type);
+    console.log('name',    male.name);
+    console.log('value',   male.value);
+    console.log('id',      male.id);
+    console.log('class',   male.className);
+    console.log('checked', male.checked);
+
+    var female = document.getElementById('female');
+    console.log('type',    female['type']);
+    console.log('name',    female['name']);
+    console.log('value',   female['value']);
+    console.log('id',      female['id']);
+    console.log('class',   female['className']);
+    console.log('checked', female['checked']);
+
+    male.checked = false;
+    female.checked = true;
+  </script>
+
+  <!-- CSS 처리하기 -->
+  <p id="p5">신은 뉴진스다</p>
+  <script>
+    /* 인라인 방식으로 적용됨
+      * -을 제거한 뒤 camel case 방식을 사용
+      CSS 속성을 문자열로 사용 */
+    var p5 = document.getElementById('p5');
+    p5.style.color = 'red';
+    p5.style.fontSize = '50px';
+    p5.style.fontWeight = '900';
+    p5.style.textAlign = 'center';
+  </script>
+
+  <!-- 연습3. password 입력 상자를 text 입력 상자로 바꾸기 -->
+  <div>
+    <input type="password" id="pw">
+  </div>
+
+  <script>
+    var password = document.getElementById('pw');
+    password.type = 'input';
+  </script>
+</body>
+</html>

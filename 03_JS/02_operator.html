@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /*
+      연산자: 산술, 대입, 비교, 논리, 문자열
+    */
+    const hourlyWage = 9620;
+    let workingHours = 12;
+
+    let regularPay;
+    let extraPay;
+    regularPay = workingHours * hourlyWage;
+    extraPay = (workingHours <= 8) ? 0 : (workingHours - 8) * hourlyWage * 0.5;
+    document.write(regularPay + extraPay);
+  </script>
+</body>
+</html>
