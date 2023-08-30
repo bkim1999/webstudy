@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /* 객체
+      여러 데이터로 구성됨
+      객체.속성 / 객체['속성']
+    */
+    var person = {
+      name: '김민지',
+      age: 20,
+      isAlive: true,
+      info: function(){ console.log(this.name, this.age); }
+    };
+    console.log(person.name);
+    console.log(person.age);
+    console.log(person.isAlive);
+    (person.info)();
+
+    var car = {};
+
+    car.model = '모닝';
+    car.maker = '기아';
+    car.model = '람보르기니';
+
+    delete car.maker;
+
+    console.log(car);
+
+  </script>
+
+  <script>
+    /*
+      생성자 함수
+      1. 객체를 만듦
+      2. new 키워드를 사용
+    */
+
+    function Product(code, name, price){
+      this.code = code;
+      this.name = name;
+      this.price = price;
+    }
+
+    var product = new Product('NEWJEANS', '김민지', 99999999999999999999999);
+
+    console.log(product['code']);
+    console.log(product['name']);
+    console.log(product.price);
+
+  </script>
+
+  <script>
+    var minji = {
+      name: '김민지',
+      age: 20,
+      birth: 'Kangwon',
+      birthyear: 2004,
+      team: 'NewJeans'
+    }
+    for(let p in minji){
+      console.log(p, minji[p]);
+    }
+
+  </script>
+
+  <div id="box"></div>
+  <script>
+    
+    function Person(name, phone, email){
+      this.name = name;
+      this.phone = phone;
+      this.email = email;
+    }
+
+    var p1 = new Person('김민지', '010-1111-1111', 'minji@gmail.com');
+    var p2 = new Person('팜하니', '010-2222-2222', 'hanni@gmail.com');
+    var p3 = new Person('강해린', '010-3333-3333', 'haerin@gmail.com');
+
+    var people = [p1, p2, p3];
+
+    var str = '';
+    str += '<table> <thead> <tr> <td>성명</td> <td>연락처</td> <td>이메일</td> </tr> </thead> <tbody>';
+    for(let i in people){
+      var p = people[i];
+      str += '<tr>'
+      for(let j in p){
+        str += '<td>' + p[j] + '</td>';
+      }
+      str += '</tr>'
+    }
+    str += '</tbody> </table>';
+
+    document.getElementById('box').innerHTML = str;
+
+    var td = document.querySelectorAll('#box > table td');
+    for(let i in td){
+      td[i].style.border = '1px solid black';
+    }
+
+  </script>
+</body>
+</html>

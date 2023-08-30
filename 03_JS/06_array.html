@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <div id="box1"></div>
+  <script>
+
+    var array = [2004, 1.5, '김민지', true];
+
+    for(let i = 0; i < array.length; i++) {
+      document.getElementById('box1').innerHTML += (array[i] + '&nbsp;&nbsp;');
+    }
+
+    for(let i in array) {
+      document.getElementById('box1').innerHTML += (array[i] + '&nbsp;&nbsp;');
+    }
+
+  </script>
+
+  <hr>
+
+  <div id="box2"></div>
+  <script>
+
+    var array = ['google', 'naver', 'daum', 'coupang'];
+    var str = '';
+    for(let i in array) {
+      str += '<img src="../../assets/image/' + array[i] + '.png" width="100px">';
+    }
+    document.getElementById('box2').innerHTML = str;
+    
+  </script>
+
+  <hr>
+
+  <div id="box3"></div>
+  <script>
+
+    var array = [];
+    
+    array.push('김민지');
+    array.push('강해린');
+    array.unshift('팜하니');
+    array.unshift('다니엘');
+    for(let i in array) {
+      box3.innerHTML += array[i] + '<br>';
+    }
+
+  
+    box3.innerHTML = '';
+    array.pop();
+    array.shift();
+    for(let i in array) {
+      box3.innerHTML += array[i] + '<br>';
+    }
+
+    // splice(수정을 시작할 인덱스, 삭제할 요소의 개수, [추가할 요소1, 추가할 요소2, ...])
+
+    
+    box3.innerHTML = '';
+    array.splice(array.length, 0, '뉴진스');
+    array.splice(1, 1, '갓진스');
+    array.splice(1, 1);
+
+     for(let i in array) {
+      box3.innerHTML += array[i];
+    }
+
+    
+  </script>
+  </body>
+</html>

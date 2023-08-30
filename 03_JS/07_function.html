@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function myFunc1(){
+      console.log('myFunc1 실행');
+    }
+    myFunc1();
+  </script>
+  <script>
+    var myFunc2 = function(){
+      console.log('myFunc2 실행');
+    }
+    var myFunc3 = ()=>{
+      console.log('myFunc3 실행')
+    }
+    myFunc2();
+    myFunc3();
+
+    (function(){
+      console.log('자기 호출 실행');
+    })();
+    (()=>{
+      console.log('자기 호출2 실행');
+    })();
+
+    document.addEventListener('dblclick', function(){
+      console.log('이벤트리스너 실행')
+    });
+  </script>
+
+  <script>
+    /*
+      인수와 매개변수
+      1. 매개변수는 변수명만
+      2. 디폴트 매개변수 처리 가능
+      3. 전개 연산자
+      4. argument 객체
+    */
+
+    function myFunc(a){
+      console.log(a);
+    }
+    myFunc(2004);
+    myFunc('김민지');
+    var a = '팜하니';
+    myFunc(a);
+    
+    var func = function(b){
+      console.log(b);
+    };
+    func('갓진스');
+    func(2006);
+    
+    (function(c){
+      console.log(c);
+    })('뉴갓스');
+    
+    ((d)=>{ console.log(d) })('뉴진갓');
+    
+    function fff(a){
+      if(a === undefined){
+        a = 0;
+      }
+      console.log(a);
+    }
+    fff();
+    fff('할 얘기 다 한 줄 알고 빨간색 눌러 끊고나니 생각나서 다시 또 눌러');
+
+    // ES6
+    function aa(a = '갓진스'){
+      console.log(a);
+    }
+    aa();
+    aa('야호');
+
+    // 전개 연산자
+    function fu(...a){
+      for(let i = 0; i < a.length; i++){
+        console.log(a[i]);
+      }
+    }
+    fu('super shy super shy', 'but wait a minute while I make you mine', '떨리는 지금도 youre on my mind all the time');
+
+    // arguments 객체
+    function arg(){
+      for(let i = 0; i < arguments.length; i++){
+        console.log(arguments[i]);
+      }
+    }
+    arg('asap baby', 'hurry up dont be lazy');
+  </script>
+
+  <script>
+    /*
+      반환
+      return retVal; return; 둘 다 가능
+    */
+    
+    function myMax(a, b, c){
+      if(isNaN(a) || isNaN(b) || isNaN(c)){
+        return;
+      }
+      var max = a;
+      for(let i in arguments){
+        if(max < arguments[i]){
+          max = arguments[i];
+        }
+      }
+      return max;
+    }
+    function myMin(a, b, c){
+      if(isNaN(a) || isNaN(b) || isNaN(c)){
+        return;
+      }
+      var min = a;
+      for(let i in arguments){
+        if(min > arguments[i]){
+          min = arguments[i];
+        }
+      }
+      return min;
+    }
+    function myMedian(a, b, c){
+      if(isNaN(a) || isNaN(b) || isNaN(c)){
+        return;
+      }
+      var max = myMax(a,b,c);
+      var min = myMin(a,b,c);
+      var median;
+      for(let i in arguments){
+        if(arguments[i] < max && arguments[i] > min){
+          median = arguments[i];
+          break;
+        }
+        else if(arguments[i] <= max && arguments[i] > min){
+          median = arguments[i];
+          break;
+        }
+      }
+      
+      return median;
+    }
+    var max = myMax(1, 2, 3);
+    var min = myMin(1, 2, 3);
+    var median = myMedian(1, 2, 3);
+    console.log(max, min, median);
+  </script>
+
+  <script>
+    /*
+      콜백 함수
+      1. 함수에 함수를 전달
+    */
+
+    function f(a){
+      a();
+    }
+    f(function(){console.log('김민지')});
+
+    function cb(a, b, callback){
+      callback(a, b);
+    }
+    cb('김민지', '팜하니', function(x, y){ console.log(x, y)});
+
+  </script>
+
+  <script>
+    // 재귀호출
+    function factorial(n){
+      if(n === 1){
+        return 1;
+      }
+      return n * factorial(n-1);
+    }
+    console.log(factorial(5));
+  </script>
+
+  <script>
+    /*
+      타이머 함수
+      1. setTimeout: 시한 폭탄
+        1) 동작:  var timer = setTimeout(함수, 시간(milis));
+        2) 동작 취소  clearTimeout(timer;)
+      2. setInterval: 반복알람
+      1) setInterval(함수, 시간)
+      2) clearTimeout() 
+    */
+      var timerId = setTimeout(function(){ console.log('3초 후') }, 3000);
+      clearTimeout(timerId);
+      
+      var n = 0;
+      var timerId = setInterval(function(){ 
+        console.log(n++);
+        if(n  > 10) {
+          clearInterval(timerId);
+        }
+      }, 1000);
+      </script>
+
+      <!-- 연습문제 -->
+      <div id="timer1"></div>
+      <script>
+        var second = 5;
+        var timer1 = document.getElementById('timer1');
+        var timerId1 = setInterval(function(){
+          if(second === 0){
+            timer1.textContent += '발사';
+            clearInterval(timerId1);
+          }
+          else { timer1.textContent += second-- + ' '; }
+        }, 1000);
+      </script>
+
+      <div id="timer2"></div>
+      <script>
+        var second = 5;
+        var timer2 = document.getElementById('timer2');
+        function myTimer(second){
+          setTimeout(function(){
+            if(second === 0){
+              timer2.textContent = '발사';
+            } else{
+              timer2.textContent = second;
+              myTimer(second - 1);
+            }
+          }, 1000);
+        }
+        myTimer(5);
+      </script>
+</body>
+</html> 

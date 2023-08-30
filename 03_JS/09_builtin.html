@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    <script>
+      /*
+        JSON 내장객체
+        객체 <-> 문자열
+      */
+
+      var person = {
+        name: '김민지',
+        age: 20
+      }
+
+      var str = JSON.stringify(person);
+      console.log(typeof str, str);
+
+      var json = JSON.parse(str);
+      console.log(typeof json, json);
+    </script>
+
+    <style>
+      .warning{
+        color: red;
+      }
+    </style>
+    <div id="watch">
+      <h1>
+        <span id="year"></span>년 
+        <span id="month"></span>월
+        <span id="day"></span>일
+        <span id="hour"></span>시
+        <span id="minute"></span>분
+        <span id="second"></span>초
+      </h1></div>
+
+    <div>
+      <h1>수능까지 
+        <span id="d-day"></span>일
+      </h1>
+    </div>
+    <script>
+      // Date 내장 객체 (타임스탬프)
+
+      var timestamp = Date.now();
+      console.log(timestamp);
+
+      var strNow = Date();
+      console.log(strNow);
+      
+      var someday = new Date(2023, 8, 30, 16, 30, 30);
+
+      // 문제: 시계
+      var watch = document.getElementById('watch');
+      watch.style.textAlign = 'center';
+      var timerId = setInterval(function(){
+
+          // 시간 표시
+          var now = new Date();
+          document.getElementById('year').textContent = String(now.getFullYear());
+          document.getElementById('month').textContent = String(now.getMonth() + 1).padStart(2, '0');
+          document.getElementById('day').textContent = String(now.getDate()).padStart(2, '0');
+          document.getElementById('hour').textContent = String(now.getHours()).padStart(2, '0');
+          document.getElementById('minute').textContent = String(now.getMinutes()).padStart(2, '0');
+          document.getElementById('second').textContent = String(now.getSeconds()).padStart(2, '0');
+
+          // 50초 넘으면 class="warning"
+          if(now.getSeconds() >= 50) {
+            watch.className = 'warning';
+          } else {
+            watch.className = null;
+          }
+      }, 1000);
+
+      // 문제: 수능 D-DAY
+      
+      var dDay = new Date(2023, 10, 16).getTime();
+      var now = Date.now();
+      var remainingTime = dDay - now;
+      var remainingDays = remainingTime / 1000 / 60 / 60 / 24;
+      var dDay = document.getElementById('d-day');
+      dDay.textContent = Math.floor(remainingDays);
+      dDay.style.textAlign = 'center'; 
+
+    </script>
+</body>
+</html>
