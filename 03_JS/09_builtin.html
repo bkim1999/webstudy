@@ -88,5 +88,125 @@
       dDay.style.textAlign = 'center'; 
 
     </script>
+
+    <script>
+      
+      // String 내장 객체
+
+      var str = '김민지 팜하니 다니엘 강해린 이혜인';
+
+      console.log(str.length);
+
+      console.log(str.charAt(0));
+      console.log(str.charAt(str.length - 1));
+
+      console.log(str.substring(0, 3));
+      console.log(str.substring(16));
+      console.log(str.substr(0, 3));
+      console.log(str.substr(16)); 
+      console.log(str.slice(0, 3));
+      console.log(str.slice(4));
+      console.log(str.slice(-3));
+
+      console.log(str.concat('씨는', ' GODDESS'));
+
+      console.log(str.startsWith('김'));
+      console.log(str.endsWith('지'));
+
+      console.log(str.indexOf('니'));
+      console.log(str.lastIndexOf('니'));
+
+      console.log(str.padEnd(100, '!'));
+      console.log(str.padStart(100, '!'));
+
+      console.log(str.repeat(3));
+
+      console.log(str.replace('니', '갓'));
+      console.log(str.replaceAll('니', '갓'));
+
+      console.log(str.toLowerCase());
+      console.log(str.toUpperCase());
+
+      var str = '                             김 민 지                            ';
+      console.log(str.trim());
+      console.log(str.trimStart() + '!!!');
+      console.log(str.trimEnd() + '!!!');
+      console.log(str.trimLeft() + '!!!');
+      console.log(str.trimRight() + '!!!');
+
+      var str = new String('김민지');
+      console.log(str);
+      console.log(str.valueOf());
+
+      var str = '김민지 팜하니 다니엘 강해린 이혜인';
+      console.log(str.split(' '));
+    </script>
+
+    <script>
+      // Array
+      var array = ['김민지', '팜하니', '다니엘', '강해린', '이혜인'];
+
+      array.forEach(function(element){
+        console.log(element + '는 GODDESS');
+      });
+      array.forEach(function(element, i){
+        console.log(i + ': ' + element + '는 GODDESS');
+      });
+
+      var result = array.filter((element)=> element.length > 6);
+      console.log(result); 
+      
+      var array = [1, 2, 3, 4, 5];
+      var map = array.map((element) => element ** 2);
+      console.log(map);
+
+      var array = ['김민지', '팜하니', '다니엘', '강해린', '이혜인'];
+      console.log(array.join());
+    </script>
+
+    <script>
+      // Math
+
+      console.log(Math.abs(-1));
+      console.log(Math.ceil(7.1));
+      console.log(Math.floor(-7.4));
+      console.log(Math.round(7.6));
+      console.log(Math.trunc(7.1));
+      console.log(Math.max(1,2,3));
+      console.log(Math.min(1,2,3));
+
+      var array = [1,2,3,4,5];
+      console.log(Math.max(...array));
+      console.log(Math.min(...array));
+
+      console.log(Math.pow(2, 3));
+      
+      console.log(Math.random());
+
+      console.log(Math.sqrt(55));
+
+    </script>
+
+    <!-- 정수난수 발생기-->
+    <script>
+      function getRandomInt(start, length){
+        return parseInt(Math.random() * (length - 1))  + start;
+      }
+
+      for(let i = 0; i < 10; i++){
+        console.log(getRandomInt(2, 5));
+      }
+    </script>
+
+    <!-- 올림함수 자리수 지정-->
+    <script>
+
+      function ceil(number, digit = 0){
+        return Math.ceil(number * Math.pow(10, digit)) / Math.pow(10, digit);
+      }
+
+      console.log(ceil(555.555, 2));
+
+    </script>
 </body>
 </html>

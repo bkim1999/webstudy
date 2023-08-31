@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <!-- 
+      이벤트 대상
+      이벤트가 작동하는 html 구성요소
+      프로퍼티로 확인 가능
+      this키워드로 확인 가능
+
+      이벤트 타입
+      click, dblclick, mouseover, mouseout, keypress, focus, blur, submit
+
+      이벤트 리스너
+      익명 함수 자주 사용
+
+      이벤트 객체
+        이벤트의 상세정보를 저장
+        이벤트 리스너에 매개변수 선언
+
+      이벤트 모델
+        이벤트 작성 방법
+        고정 이벤트 모델
+        표준 이벤트 모델
+        인라인 이벤트 모델
+    -->
+  
+  <!-- 고전 이벤트 모델 -->
+  <div id="box1">box1</div>
+  <div id="box2">box2</div>
+  <div id="box3">box3</div>
+  <script>
+
+
+    function a(event){
+      this.textContent = '강해린';
+      this.style.color = 'green';
+      this.style.fontSize = '64px';
+      console.log('표준함수 고정이벤트모델')
+    }
+    document.getElementById('box1').onclick = a;
+    document.getElementById('box2').onclick = function(event){
+      this.textContent = '김민지';
+      this.style.color = 'skyblue';
+      this.style.fontSize = '64px';
+      console.log('익명함수 고정이벤트모델');
+    }
+    document.getElementById('box3').onclick = (event)=>{
+      event.target.textContent = '팜하니'; // ()=> 는 this 안 됨.
+      event.target.style.color = 'orange';
+      event.target.style.fontSize = '64px';
+      console.log('익명화살표함수 고정이벤트모델');
+    }
+  </script>
+
+  <!-- 표준 이벤트 모델 -->
+  <div id="box4">box4</div>
+  <script>
+    document.getElementById('box4').addEventListener('click', function(event){
+      this.style.fontSize = '64px';
+    });
+    document.getElementById('box4').addEventListener('click', function(event){
+      this.style.color = 'yellow';
+      this.textContent = '다니엘';
+    });
+  </script>
+
+  <!-- 인라인 이벤트 모델 -->
+  <div id="box5" onclick="f(this)">box5</div>
+  <script>
+    function f(dom){
+      dom.style.color = 'purple';
+      dom.style.fontSize = '64px';
+      dom.textContent = '이혜인';
+    }
+  </script>
+
+  <!-- 이벤트 방지 -->
+  <ul id="site">
+    <li><a href="https://www.google.com/">구글</a></li>
+    <li><a href="https://www.naver.com/">네이버</a></li>
+    <li><a href="https://www.daum.net/">다음</a></li>
+  </ul>
+  <script>
+    var sites = document.querySelectorAll('#site a');
+    sites.forEach(function(element){
+      element.addEventListener('click', function(event){
+        if(this.href.endsWith('.net/')){
+          event.preventDefault();
+        }
+      })
+    })
+  </script>
+
+  <!-- 서브밋 방지 -->
+  <div id="wrap1">
+    <form action="https://search.naver.com/search.naver" id="frm1">
+      <div>
+        <input type="text" id="query" name="query">
+        <button type="submit">네이버 검색</button>
+      </div>
+    </form>
+  </div>
+  <script>
+    document.getElementById('frm1').addEventListener('submit', function(event){
+      if(document.getElementById('query').value != '뉴진스 민지'){
+        alert('무엇을 검색하는가?');
+        event.preventDefault();
+        document.getElementById('query').value = '뉴진스 민지';
+      }
+    });
+  </script>
+
+  <div id="wrap2">
+    <form action="search.daum.net/search" id="frm2">
+      <div>
+        <input type="text" id="q" name="q">
+        <button type="button" id="btn_daum">다음 검색</button>
+      </div>
+    </form>
+  </div>
+  <script>
+    document.getElementById('btn_daum').addEventListener('click', function(){
+      if(document.getElementById('q').value != '뉴진스 민지'){
+        alert('무엇을 검색하는가?');
+        document.getElementById('q').value = '뉴진스 민지';
+        return;
+      }
+
+      document.getElementById('frm2').submit();
+    });
+  </script>
+
+  <div id="wrap3">
+    <div>
+      <input type="checkbox" id="chk_all">
+      <label for="chk_all">전체 선택</label>
+    </div>
+    <div>
+      <input type="checkbox" id="chk1" class="chk_each">
+      <label for="chk1">선택1</label>
+    </div><div>
+      <input type="checkbox" id="chk2" class="chk_each">
+      <label for="chk2">선택2</label>
+    </div><div>
+      <input type="checkbox" id="chk3" class="chk_each">
+      <label for="chk3">선택3</label>
+    </div>
+  </div>
+  <script>
+
+    var chkAll = document.getElementById('chk_all');
+    var chkEach = document.querySelectorAll('#wrap3 .chk_each');
+
+    // 전체선택 클릭
+    chkAll.addEventListener('click', function(){
+      for(i in chkEach){
+        chkEach[i].checked = chkAll.checked;
+      }
+    });
+
+    // 개별선택 클릭
+    for(let i = 0; i < chkEach.length; i++) {
+      chkEach[i].addEventListener('click', function(){
+        for(let j = 0; j < chkEach.length; j++) {
+          if(chkEach[j].checked === false){
+            chkAll.checked = false;
+            break;
+          }
+          chkAll.checked = true;
+        }
+      })
+    };
+    
+  </script>
+
+  <!-- 문제. 버튼 클릭 시 box 색 랜덤 -->
+  <div id="wrap4">
+    box
+  </div>
+  <script>
+    document.getElementById('wrap4').addEventListener('click', function(){
+      var rgb = 'rgb(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256);
+      this.style.backgroundColor = rgb;
+    })
+  </script>
+</body>
+</html>

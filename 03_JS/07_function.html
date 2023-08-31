@@ -210,7 +210,7 @@
         var timer1 = document.getElementById('timer1');
         var timerId1 = setInterval(function(){
           if(second === 0){
-            timer1.textContent += '발사';
+            timer1.textContent += '발사'; 
             clearInterval(timerId1);
           }
           else { timer1.textContent += second-- + ' '; }
