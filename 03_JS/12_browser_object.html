@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /*
+      BOM
+      브라우저의 구성요소 -> 객체로 처리 (이미 만들어져 있음)
+      history: 방문 경로
+      location: url
+      screen: 화면 정보
+      window: 브라우저 창
+    */
+
+    document.write('<div>화면 너비: ' + screen.width + '</div>');
+    document.write('<div>화면 높이: ' + screen.height + '</div>');
+    document.write('<div>실제 너비: ' + screen.availWidth + '</div>');
+    document.write('<div>실제 높이: ' + screen.availHeight + '</div>');
+  </script>
+
+  <!-- history -->
+  <div>
+    <input type="button" value="뒤로" onclick="history.back()">
+    <input type="button" value="앞으로" onclick="history.forward()">
+    <input type="button" value="뒤로2번" onclick="history.go(-2)">
+  </div>
+
+  <!-- location -->
+  <div>
+    <input type="button" value="네이버" class="btn_link" data-site="naver">
+    <input type="button" value="구글" class="btn_link" data-site="google">
+    <input type="button" value="민지" class="btn_link" data-site="minji">
+  </div>
+  <script>
+    var btnLink = document.querySelectorAll('.btn_link');
+    btnLink.forEach(function(element){
+      element.addEventListener('click', function(){
+        var url;
+        switch(this.dataset.site){
+          case 'naver': url = 'https://www.naver.com/'; break;
+          case 'google': url = 'https://www.google.com/'; break;
+          case 'minji': url = 'https://search.pstatic.net/sunny?src=https%3A%2F%2Fi.namu.wiki%2Fi%2FphlRTbkF8GdUGSpqFcILZrDnL9zraZWewcAkq5IPnZYjy_LiR_pMpN5cko_Ty5PexliZr4HVyMz447SLFW3ieQ.webp&type=fff264_180'; break;
+        }
+        location.href = url;
+      })
+    });
+  </script>
+
+  <!-- window -->
+  <div>
+    <input type="button" value="창열기"  id="btn_open">
+  </div>
+  <script>
+    
+    document.getElementById('btn_open').addEventListener('click', function(){
+      var url = 'https://search.pstatic.net/sunny?src=https%3A%2F%2Fi.namu.wiki%2Fi%2FphlRTbkF8GdUGSpqFcILZrDnL9zraZWewcAkq5IPnZYjy_LiR_pMpN5cko_Ty5PexliZr4HVyMz447SLFW3ieQ.webp&type=fff264_180';
+      var width = 640;
+      var height = 480;
+      var left = (screen.width - width) / 2;
+      var top = (screen.height - height) / 2;
+      console.log(top);
+      var feature = 'width=' + width + ',height=' + height + ',left=' + left + ',top=' + top;
+        window.open(url, '갓민지', feature);
+    });
+
+  </script>
+  </body>
+</body>
+</html>
