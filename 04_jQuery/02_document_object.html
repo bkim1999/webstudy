@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../../assets/js/lib/jquery-3.7.1.slim.min.js"></script>
+</head>
+<body>
+
+  <div id="box" class="wrap"></div>
+  <script>
+    
+    var div = $('div'); // 배열
+    var box = $('#box'); // 객체
+    var wrap = $('.wrap'); // 배열
+
+    console.log(div);
+    console.log(box);
+    console.log(wrap);
+
+  </script>
+
+  <div class="ott_wrap">
+    <ul class="ott">
+      <li id="minji">
+        <a href="#">김민지</a>
+      </li>
+      <li id="hanni">
+        <a href="#">팜하니</a>
+      </li>
+      <li id="netflix">
+        <a href="#">넷플릭스</a>
+      </li>
+      <li id="disneyplus">
+        <a href="#">디즈니플러스</a>
+      </li>
+      <li id="wave">
+        <a href="#">웨이브</a>
+      </li>
+    </ul>
+  </div>
+  <script>
+    
+    // 자식
+    var ott = $('.ott_wrap > .ott');
+    var ott = $('.ott_wrap').find('.ott');
+    var ott = $('.ott_wrap').children(); // 모든 자식
+
+    // 후손
+    var li = $('.ott_wrap li');
+    var li = $('.ott_wrap').find('li');
+    var li = $('.ott_wrap').children().children();
+    console.log(li);
+
+    // 모든 형제
+    var sibling = $('#netflix ~ li');
+    var sibling = $('#netflix').siblings('li');
+    var sibling = $('#netflix').nextAll(); // 다음 모든 형제
+    console.log(sibling);
+    var sibling = $('#netflix').prevAll(); // 이전 모든 형제
+    console.log(sibling);
+
+    // 인접 형제
+    var sibling = $('#netflix + li');
+    var sibling = $('#netflix').next();
+    var sibling = $('#netflix').prev();
+
+    // 부모
+    var parent = $('#netflix').parent();
+    var parent = $('#netflix').closest(); // 가장 가까운 부모
+    var parent = $('#netflix').parents();
+    
+  </script>
+  
+  <hr>
+
+  <div class="post" data-post="1">
+    <h1 class="title">제목1</h1>
+    <div class="content">내용1</div>
+    <input type="button" value="삭제" class="btn_remove1">
+  </div>
+  <div class="post" data-post="2">
+    <h1 class="title">제목2</h1>
+    <div class="content">내용2</div>
+    <input type="button" value="삭제" class="btn_remove1">
+  </div>
+  <script>
+    var target = $('.btn_remove1').parent();
+    console.log(target);
+  </script>
+
+  <hr>
+
+  <div class="post">
+    <h1 class="title" data-post="1">제목1</h1>
+    <div class="content">내용1</div>
+    <input type="button" value="삭제" class="btn_remove2">
+  </div>
+  <div class="post">
+    <h1 class="title" data-post="2">제목2</h1>
+    <div class="content">내용2</div>
+    <input type="button" value="삭제" class="btn_remove2">
+  </div>
+  <script>
+    var target = $('.btn_remove2').prevAll('.title');
+    console.log(target);
+  </script>
+  <hr>
+
+  <div class="post">
+    <h1 class="title">제목1</h1>
+    <div class="content" data-post="1">내용1</div>
+    <input type="button" value="삭제" class="btn_remove3">
+  </div>
+  <div class="post">
+    <h1 class="title">제목2</h1>
+    <div class="content" data-post="2">내용2</div>
+    <input type="button" value="삭제" class="btn_remove3">
+  </div>
+  <script>
+    var target = $('.btn_remove3').prev();
+    console.log(target);
+  </script>
+
+  <hr>
+
+  <div class="post">
+    <h1 class="title">제목1</h1>
+    <div class="content">내용1</div>
+    <input type="button" value="삭제" class="btn_remove4" data-post="1">
+  </div>
+  <div class="post">
+    <h1 class="title">제목2</h1>
+    <div class="content">내용2</div>
+    <input type="button" value="삭제" class="btn_remove4" data-post="2">
+  </div>
+  <script>
+    var target = $('.btn_remove4');
+    console.log(target);
+  </script>
+
+  <hr>
+
+  <div class="post">
+    <h1 class="title">제목1</h1>
+    <div class="content">내용1</div>
+    <input type="button" value="삭제" class="btn_remove5">
+    <input type="hidden" value="1">
+  </div>
+  <div class="post">
+    <h1 class="title">제목2</h1>
+    <div class="content">내용2</div>
+    <input type="button" value="삭제" class="btn_remove5">
+    <input type="hidden" value="2">
+  </div>
+  <script>
+    var target = $('.btn_remove5').siblings('input');
+    console.log(target);
+    /*
+      아름다운 구속 - 뉴진스(NewJeans)
+      
+      오늘 하루 행복하길
+      언제나 아침에 눈뜨면
+      기도를 하게돼
+      달아날까 두려운 행복 앞에
+
+      널 만난 건 행운이야
+      휴일에 해야할 일들이
+      내게도 생겼어
+      약속하고 만나고 헤어지고
+
+      조금씩 집 앞에서
+      널 들여보내기가
+      힘겨워지는 나를 어떻게
+
+      처음이야 내가 드디어 내가
+      사랑에 난 빠져버렸어
+      혼자인게 좋아
+      나를 사랑하던 내게
+      또다른 내가 온 거야
+
+      아름다운 구속인걸
+      사랑이 사람을 얼마나
+      변하게 하는지
+      살아있는 오늘이 아름다워
+
+      조금씩 집 앞에서
+      널 들여보내기가
+      힘겨워지는 나를 어떻게
+
+      처음이야 내가 드디어 내가
+      사랑에 난 빠져버렸어
+      혼자인게 좋아
+      나를 사랑하던 내게
+      또다른 내가 온 거야
+      
+      처음이야 내가 드디어 내가
+      사랑에 난 빠져버렸어
+      혼자인게 좋아
+      나를 사랑하던 나에게
+      또다른 내가 온 거야
+      내 앞에 네가 온 거야
+    */
+  </script>
+  <hr>
+
+  <div class="form_wrap">
+    <form id="frm">
+      <div><input type="text"></div>
+      <div><input type="password"></div>
+      <div>
+        <input type="radio" name="gender" value="man">남자
+        <input type="radio" name="gender" value="woman">여자
+        <input type="radio" name="gender" value="none" checked>선택안함
+      </div>
+      <div>
+        <input type="checkbox" name="hobbies" value="travel">여행
+        <input type="checkbox" name="hobbies" value="tracking">트래킹
+        <input type="checkbox" name="hobbies" value="cycle" checked>사이클
+      </div>
+      <div>
+        <select>
+          <option value="" checked>선택하세요</option>
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+        </select>
+      </div>
+    </form>
+  </div>
+  <script>
+    var text = $('input[type=text]');
+    var text = $(':text');
+    var pw = $(':password');
+    var radio = $(':radio');
+    var text = $(':focus');
+    var radioChecked = $(':radio:checked');
+  </script>
+
+  <p id="p1">김민지</p>
+  <script>
+    var p1 = $('#p1');
+    p1.text('뉴진스만세이');
+  </script>
+
+  <p id="p2"><strong>갓민지</strong></p>
+  <script>
+    var p2 = $('#p2');
+    console.log(p2.html());
+    p2.html('<strong>그저갓민지</strong>');
+  </script>
+
+  <p id="p3">
+    <img src="../../assets/image/flower1.jpg" width="384px">
+  </p>
+  <script>
+    var img = $('#p3').find('img');
+    console.log(img.attr('src'));
+    img.attr('src', '../../assets/image/flower2.jpg');
+    // img.removeAttr('width');
+  </script>
+
+  <p id="p4">
+    <input type="radio" name="gender" value="M" id="male" checked="checked" class="blind" data-gender = "1>
+    <label for="male">남자</label>
+    <input type="radio" name="gender" value="F" id="female" class="blind" data-gender = "2">
+    <label for="female">여자</label>
+  </p>
+  <script>
+    var male = $('#male');
+    var female = $('#female');
+    console.log('type', male.prop('type'));
+    male.prop('checked', false);
+    female.prop('checked', true);
+    var radio = $(':radio');
+    // male.removeProp('class'); // built-in property 삭제 금지
+    // data value class 는 메소드가 따로 있음
+    // addClass(), removeClass(), toggleClass(), val(), data()
+
+
+    radio.prop('id', 'man');
+    radio.next().prop('for', 'man');
+
+  </script>
+
+  <p id="p5">신은 뉴진스다</p>
+  <script>
+
+    var p5 = $('#p5');
+    p5.css('color', 'red');
+    p5.css('fontSize', '50px').css('fontWeight', '900');
+    p5.css('textAlign', 'center');
+
+  </script>
+  
+  <hr>
+
+  
+
+</body>
+</html>

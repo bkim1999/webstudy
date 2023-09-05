@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../../assets/js/lib/jquery-3.7.1.slim.min.js"></script>
+  <style>
+    .big {
+      font-size: 32px;
+    }
+    .small {
+      font-size: 8px;
+    }
+    .visible{
+      visibility: visible;
+      opacity: 1;
+      display: block;
+      color: rgba(0,0,0, 1);
+      position: relative;
+      top: 0px;
+    }
+    .invisible{
+      visibility: hidden; /* 투명드래곤 */
+      opacity: 0;         /* 투명도 */
+      display: none;      /* 없어요 그냥 없어요 */
+      color: rgba(0,0,0,0); /* 글자색 투명드래곤 */
+      position: relative;
+      top: -9999999px;        /* 어딘가 있겠지 */
+    }
+  </style>
+</head>
+<body>
+  <div id="box1">김민지 The Goddess</div>
+  <div id="box2">강해린 The Goddess</div>
+  <script>
+    $('#box1').addClass('big').addClass('visible');
+    $('#box2').addClass('small invisible');
+
+    $('#box1').removeClass('visible');
+    $('#box2').removeClass('invisible');
+
+    if($('#box1').hasClass('big')){
+      $('#box1').addClass('small');
+      $('#box1').removeClass('big');
+    }
+    
+    $('#box1').toggleClass('small');
+    $('#box2').toggleClass('small').toggleClass('small');
+    
+  </script>
+</body>
+</html>
