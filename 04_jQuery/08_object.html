@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../../assets/js/lib/jquery-3.7.1.slim.min.js"></script>
+</head>
+<body>
+
+  <div id="box"></div>
+  <script>
+
+    var obj = {
+      'name': '김민지',
+      'age': 20
+    };
+
+    $.extend(
+      obj,
+      {'group': 'NewJeans'}
+    );
+
+    var str = '';
+    $.each(obj, function(prop){
+      str += prop + ': ' + obj[prop] + '<br>';
+    })
+
+    $.each(obj, function(p, value){
+      console.log(p, value);
+    });
+    
+    $.extend(obj,
+      { 'address': '서울시 뉴진스로' }
+    );
+
+    var dl = $('<dl>');
+    $.each(obj, function(p, value){
+      dl.append($('<dt>').text(p));
+      dl.append($('<dd>').text(value));
+    });
+    $('#box').append(dl);
+
+  </script>
+</body>
+</html>

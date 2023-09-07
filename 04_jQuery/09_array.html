@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../../assets/js/lib/jquery-3.7.1.slim.min.js"></script>
+</head>
+<body>
+  <div id="box1"></div>
+  <script>
+    var fourSeason = ['spring', 'summer', 'fall', 'winter'];
+
+    $.each(fourSeason, function(i){
+      console.log(i);
+    })
+
+    $.each(fourSeason, function(i, e){
+      console.log(i, e);
+    })
+
+    var ol = $('<ol>');
+    $.each(fourSeason, function(i, e){
+      ol.append($('<li>').text(e));
+    })
+    $('#box1').append(ol);
+
+  </script>
+
+  <hr>
+
+  <div id="box2"></div>
+  <script>
+    
+    var people = [
+      {
+        'name': '김민지',
+        'age': 20,
+        'mobile': '010-NEWJEANS-1111'
+      },
+      {
+        'name': '팜하니',
+        'age': 20,
+        'mobile': '010-NEWJEANS-2222'
+      },
+      {
+        'name': '다니엘',
+        'age': 18,
+        'mobile': '010-NEWJEANS-3333'
+      }
+    ];
+
+    var tr = $('<tr>');
+    tr.append($('<td>').text('이름'));
+    tr.append($('<td>').text('나이'));
+    tr.append($('<td>').text('전화번호'));
+    var thead = $('<thead>').append(tr);
+    
+    var tbody = $('<tbody>');
+    $.each(people, function(i, e){
+      var tr = $('<tr>');
+      $.each(e, function(j, p){
+        tr.append($('<td>').text(p));
+      })
+      tbody.append(tr);
+    });
+
+    var table = $('<table>').append(thead).append(tbody);
+    table.appendTo($('#box2'));
+
+    table.css('border', '1px solid gray');
+    table.find('td').css('border', '1px solid gray');
+
+  </script>
+
+  <hr>
+
+  <div id="box3"></div>
+  <script>
+
+    // 배열 생성 및 초기화
+    var site = [
+      {
+        'host': '네이버',
+        'url': 'https://www.naver.com/',
+        'target': '_blank'
+      },
+      {
+        'host': '구글',
+        'url': 'https://www.google.com/',
+        'target': '_self'
+      }
+    ]
+
+    /*
+      <ul>
+        <li><a href="https://www.naver.com/" target="_blank">네이버</a></li>
+        <li><a href="https://www.google.com/" target="_self">구글</a></li>
+      </ul>
+    */
+
+    var ul = $('<ul>');
+    $.each(site, function(i, e){
+      var a = $('<a>');
+      a.text(e.host);
+      a.attr('href', e.url);
+      a.attr('target', e.target);
+      ul.append($('<li>').append(a));
+    });
+    ul.appendTo($('#box3'));
+    
+  </script>
+
+
+  <hr>
+
+
+  <div id="box4">
+    <ul>
+      <li class="movies">터미네이터</li>
+      <li class="movies">아바타</li>
+      <li class="movies">에일리언</li>
+      <li class="movies">스타워즈</li>
+      <li class="movies">로보캅</li>
+    </ul>
+  </div>
+  <script>
+
+    // class="movies"인 요소를 배열로 만들기
+
+    var movies = [];
+    var mov = $('.movies');
+    $.each(mov, function(i, e){
+      movies.push($(e).text());
+    })
+    console.log(movies);
+
+  </script>
+
+
+  <hr>
+
+
+  <div id="box5">
+    <select id="region">
+      <option value="02">서울</option>
+      <option value="031">경기</option>
+      <option value="032">인천</option>
+    </select>
+  </div>
+  <script>
+
+    // id가 region인 요소를 배열로 만들기
+
+    var region = [];
+
+    var regions = $('#region').children('option');
+    $.each(regions, function(i, e){
+      var option = $(e);
+      var obj = {
+        'name': option.text(),
+        'tel': option.val()
+      }
+      region.push(obj);
+    });
+    console.log(region);
+    
+  </script> 
+</body>
+</html>

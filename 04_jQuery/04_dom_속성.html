@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+   <!-- value -->
+   <p id="p3">
+    <input type="text" placeholder="김민지짱">
+    <br>
+    <select>
+      <option value="김민지">김민지</option>
+      <option value="팜하니" selected>팜하니</option>
+      <option value="강해린">강해린</option>
+    </select>
+    <br>
+    <textarea></textarea>
+  </p>
+  <script>
+
+    console.log($('#p3 > select').val());
+
+    $('#p3 > :text').val('킴민지');
+
+    $('#p3 > textarea').text('뉴진스 만만세');
+
+  </script>
+
+  <!-- data- -->
+
+  <p id="p4">
+    <span id="first"></span>부터 <span id="last"></span>까지
+  </p>
+  <script>
+
+    $('#p4').data('range', {'first': 1, 'last': 10});
+
+    var range = $('#p4').data('range');
+    
+    $('#first').data('first', range.first).text(range.first);
+    $('#last').data('last', range.last).text(range.last);
+
+  </script>
+
+  <hr>
+
+  <p id="p5" data-role="admin" data-member-no="1" data-memberName="김민지"></p>
+  <script>
+    var p5 = $('#p5');
+    console.log(p5.data('role'), p5.data('memberNo'), p5.data('membername')); // attribute에서는 camel caseX
+  </script>
+  <hr>
+
+  <p id="p6" ></p>
+  <script>
+    var p6 = $('#p6');
+    console.log(p5.data('role'), p5.data('memberNo'), p5.data('membername')); // attribute에서는 camel caseX
+  </script>
+  
+  <style>
+    #p7::before{
+      content: attr(data-ho);
+    }
+  </style>
+  <p id="p7" data-ho="뉴진스">김민지</p>
+</body>
+</html>

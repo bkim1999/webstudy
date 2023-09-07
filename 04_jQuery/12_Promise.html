@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../../assets/js/lib/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+  <script>
+    /*
+      Promise 객체: 비동기 처리 결과를 나타내는 객체
+      대기상태: pending
+      이행상태: fulfilled
+      거부상태: reject
+
+      Promise.resolve() -> then()
+      Promise.reject()  -> catch()
+
+    */
+
+    var a;
+
+    new Promise(function(resolve, reject){
+      $.ajax({
+        type: 'get',
+        url: 'product1.xml',
+        async: true,
+        dataType: 'xml',
+        success: function(resData){
+          resolve($(resData).find('product').length);
+        },
+        error: function(jqXHR){
+          reject(jqXHR.status);
+        }
+      })
+    }).then(function(length){
+      console.log(length);
+    }).catch(function(status){
+      console.log(status);
+    });
+    console.log(a);
+  </script>
+
+  <hr>
+
+  <!-- Promise 예시 동작 시나리오-->
+
+  <script>
+    /* 시나리오
+      1. ajax1: 입력한 이메일이 사용 가능한지 확인.
+      2. ajax2: 사용가능한 이메일이라면 인증메일
+    */
+
+    function checkEmail(){
+      return new Promise(function(resolve, reject){
+        var email = "minji@gmail.com";
+        $.ajax({
+          type: 'get',
+          url: 'validEmail.json', // {"validEmail": true} or {"validEmail" : false}
+          async: true,
+          data: 'email=' + email,
+          dataType: 'json',
+          success: function(resData){
+            if(resData.validEmail){
+              resolve(email);
+            } else{
+              reject(email);
+            }
+          },
+        });
+      });
+    }
+
+    checkEmail().then(function(email){
+      var authcode = "123456";
+      $.ajax({
+        type: 'get',
+        url: 'authentication.json', // {"authcode": "123456"}
+        async: true,
+        data: 'email=' + email,
+        dataType: 'json',
+        success: function(resData){
+          if(resData.authcode === authcode){
+            alert('인증 완료완료완료');
+          }
+          else{
+            alert('인증 실패실패');
+          }
+        },
+      });
+    }).catch(function(email){
+      alert(email + '은 이미 등록된 이메일임.');
+    });
+  </script>
+
+  <hr>
+
+  <div>
+    <button id="btn">이미지열기</button>
+    <div id="img"></div>
+  </div>
+  <script>
+    $('#btn').click(function(){
+      var no = parseInt(Math.random() * 10 + 1);
+      openImage('../../assets/image/animal' + no + '.jpg');
+    });
+
+    function openImage(imageURL){
+      new Promise(function(resolve, reject){
+        $.ajax({
+          type: 'get',
+          url: imageURL,
+          async: true,
+          xhrFields: {
+            responseType: 'blob'
+          },
+          success: function(resData){
+            resolve(resData);
+          },
+          error: function(jqXHR){
+            reject(jqXHR);
+          }
+        });
+      }).then(function(resData){
+        var img = new Image();
+        img.src = URL.createObjectURL(resData);
+        $('#img').empty();
+        $('#img').append(img);
+      }).catch(function(jqXHR){
+        alert(jqXHR.status + '(' + jqXHR.statusText + ')');
+      })
+    };
+  </script>
+</body>
+</html>

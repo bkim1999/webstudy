@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../../assets/js/lib/jquery-3.7.1.min.js"></script>
+  <style>
+    #img {
+      content: url(../../assets/image/flower1.jpg);
+      width: 500px;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <button onclick="">새로고침</button>
+    <button id="btn_open">열기</button>
+    <button id="btn_close">닫기</button>
+    <button id="btn_toggle">토글</button>
+  </div>
+  <div id="img"></div>
+  <script>
+    
+    $('#btn_close').click(function(){
+      //$('#img').hide();
+      /*
+      $('#img').fadeOut(2000, 'linear', function(){
+        alert('조금씩 집 앞에서 널 들여보내기가 힘겨워지는 나를 어떡해');
+      });
+      */
+      //$('#img').slideUp(2000, 'swing', function(){ alert('GODMINJI'); });
+      $('#img').fadeTo(2000, 0.5, 'swing', function(){ alert('GODMINJI'); });
+    });
+
+    $('#btn_open').click(function(){
+      //$('#img').show();
+      /*
+      $('#img').fadeIn(2000, 'swing', function(){
+        alert('Goddess');
+      });
+      */
+      //$('#img').slideDown(2000, 'linear', function(){ alert('MINJIGODGODMAN')});
+      $('#img').fadeTo(2000, 1, 'linear', function(){ alert('MINJIGODGODMAN')});
+    });
+
+    $('#btn_toggle').click(function(){
+      $('#img').fadeToggle(2000);
+    });
+
+  </script>
+</body>
+</html>

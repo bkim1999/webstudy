@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../../assets/js/lib/jquery-3.7.1.slim.min.js"></script>
+</head>
+<body>
+
+  <!-- 태그 내부 텍스트 -->
+
+  <p id="p1">김민지</p>
+  <script>
+    var p1 = $('#p1');
+    p1.text('뉴진스만세이');
+  </script>
+
+  <hr>
+  
+  <!-- 태그 내부 요소 -->
+
+  <p id="p2"><strong>갓민지</strong></p>
+  <script>
+    var p2 = $('#p2');
+    console.log(p2.html());
+    p2.html('<strong>그저갓민지</strong>');
+  </script>
+
+  <hr>
+
+  <!-- 태그 추가 (부모-자식 관계) -->
+
+  <div id="box">
+    <ul id="menu"></ul>
+  </div>
+  <script>
+    var menu = $('#menu');
+
+    menu.prepend('<li id="kimchi">김민지</li>');
+    menu.prepend($('<li>').attr('id', 'pizza').text('강해린'));
+    menu.append('<li id="donut">도넛</li>');
+    menu.append($('<li>').attr('id', 'pasta').text('팜하니'));
+
+    var str = '<li id="coffee">다니엘</li>';
+    $(str).prependTo(menu);
+    var obj = $('<li id="hyein">이혜인</li>');
+    $(obj).appendTo(menu);
+  </script>
+
+  <hr>
+
+  <!-- 태그 추가 (형제 관계) -->
+
+  <div id="box2">
+    <ul id="movies">
+      <li id="terminator">터미네이터</li>
+    </ul>
+  </div>
+  <script>
+    var terminator = $('#terminator');
+
+    terminator.before('<li id="newjeans">뉴진스</li>');
+    terminator.after('<li id="newjeans2">처음이야 내가</li>');
+    terminator.after($('<li>').attr('id', 'newjeans3').text('드디어 내가'));
+    terminator.after($('<li>').attr('id', 'newjeans4').text('사랑에 난 빠져버렸어'));
+    
+  </script>
+
+  <hr>
+
+  <!-- 태그 제거 -->
+
+  <div id="box3">
+    <strong id="minji">Hello 김민지</strong>
+    <strong id="hanni">Hello 팜하니</strong>
+  </div>
+  <script>
+    
+    $('minji').remove();
+
+    $('#box3').empty();
+    
+  </script>
+
+</body>
+
+</html>
